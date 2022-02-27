@@ -1,20 +1,29 @@
 import styled from "styled-components";
 
 const Container = styled.nav`
+    align-items: center;
+    color: white;
+    display: flex;
+    fill: white;
+    font: 400 1em "Archivo Black", sans-serif;
+    justify-content: space-between;
+    padding: 0.75em;
     position: absolute;
     top: 0;
-    z-index: 10;
-    color: white;
-    fill: white;
     width: 100%;
-    padding: 0.75em 0;
-    align-items: center;
-    display: flex;
-    justify-content: space-evenly;
-    font: 400 1em "Archivo Black", sans-serif;
+    z-index: 10;
 
-    > *:nth-of-type(1) {
-        flex-grow: 0.4;
+    #navbar-icon {
+        height: 1.5em;
+        flex-grow: 0.2;
+        align-items: center;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    #navbar-icon > *:first-child {
+        width: 1.5em;
+        height: 1.5em;
     }
 
     #navbar-links {
@@ -22,15 +31,18 @@ const Container = styled.nav`
         align-items: center;
         display: flex;
         justify-content: space-evenly;
-        gap: 0.5em;
-        flex-grow: 1;
+        gap: 1em;
+    }
+
+    @media screen and (min-width: calc(768em / 16)) {
+        font-size: 1.5em;
     }
 `;
 
 const Navbar = ({ children: links, icon }) => {
 	return (
 		<Container id="navbar-home">
-			{icon}
+			<div id="navbar-icon">{icon}</div>
 			<div id="navbar-links">{links}</div>
 		</Container>
 	);
