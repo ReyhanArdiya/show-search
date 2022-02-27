@@ -33,7 +33,7 @@ const Container = styled.nav`
         align-items: center;
         display: flex;
         justify-content: space-evenly;
-        gap: 1em;
+        gap: 0.5em;
     }
 
     #navbar-links > * {
@@ -49,6 +49,12 @@ const Container = styled.nav`
 
     @media screen and (min-width: calc(768em / 16)) {
         font-size: 1.5em;
+        padding-left: 1em;
+        padding-right: 1em;
+
+        #navbar-links {
+            gap: 1em;
+        }
     }
 
     @media screen and (min-width: calc(1440em / 16)) {
