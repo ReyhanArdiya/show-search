@@ -7,6 +7,7 @@ const Container = styled.article`
     align-items: center;
     display: flex;
     justify-content: center;
+    min-height: 320px;
 
     #poster-item {
         width: 100%;
@@ -27,33 +28,36 @@ const Container = styled.article`
 const Poster = ({ info, switchDuration, fadeDuration }) => {
 	const [ whichSrc, setWhichSrc ] = useState(0);
 	const imgRef = useRef();
+	const isInfoValid = info && info.length;
 
 	const switchImage = () => {
-		// Gives the fade-in transition on start
-		imgRef.current.style.opacity = 1;
+		if (isInfoValid) {
+			// Gives the fade-in transition on start
+			imgRef.current.style.opacity = 1;
 
-		setTimeout(async () => {
+			setTimeout(async () => {
 			// Fade out the image first
-			await new Promise(resolve => {
-				imgRef.current.style.opacity = 0;
-				setTimeout(resolve, fadeDuration);
-			});
+				await new Promise(resolve => {
+					imgRef.current.style.opacity = 0;
+					setTimeout(resolve, fadeDuration);
+				});
 
-			// Render a new image after prev image is dark
-			setWhichSrc(
-				prevSrc => prevSrc !== info.length - 1 ? prevSrc + 1 : 0
-			);
-		}, switchDuration);
+				// Render a new image after prev image is dark
+				setWhichSrc(
+					prevSrc => prevSrc !== info.length - 1 ? prevSrc + 1 : 0
+				);
+			}, switchDuration);
+		}
 	};
 
 	useEffect(
 		switchImage,
-		[ fadeDuration, info.length, switchDuration, whichSrc ]
+		[ fadeDuration, info?.length, isInfoValid, switchDuration, whichSrc ]
 	);
 
 	return (
 		<Container fadeDuration={fadeDuration}>
-			<img ref={imgRef} id="poster-item" src={info[whichSrc]} alt="" />
+			{isInfoValid ? <img ref={imgRef} id="poster-item" src={info[whichSrc]} alt="" /> : <div id="poster-item"></div>}
 		</Container>
 	);
 };
