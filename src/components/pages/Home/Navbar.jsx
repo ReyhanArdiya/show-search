@@ -4,7 +4,6 @@ import { useState } from "react";
 const Container = styled.nav`
     align-items: center;
     display: flex;
-    fill: white;
     font: 400 1em "Archivo Black", sans-serif;
     justify-content: space-between;
     padding: 0.75em;
@@ -22,8 +21,10 @@ const Container = styled.nav`
     }
 
     #navbar-icon > *:first-child {
+        cursor: pointer;
         width: 1.5em;
         height: 1.5em;
+        fill: white;
     }
 
     #navbar-links {
@@ -37,11 +38,12 @@ const Container = styled.nav`
 
     #navbar-links > * {
         cursor: pointer;
+        transition: color 0.15s ease-in;
     }
 
-    #navbar-links > *:nth-child(${({ activeLink }) => activeLink}) {
+    #navbar-links > *:nth-child(${({ activeLink }) => activeLink}),
+    #navbar-links > *:hover {
         color: white;
-        /* TODO fix this to not rise the active link */
         border-bottom: 0.25em solid white;
     }
 
