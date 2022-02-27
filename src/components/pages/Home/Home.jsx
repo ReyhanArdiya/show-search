@@ -45,7 +45,7 @@ const Home = () => {
 
 	return (
 		<Container id="page-home">
-			<Navbar icon={GitHubLogo} links={[ "HOME", "FAVORITES", "SEARCH" ]}/>
+			<Navbar iconLink="https://github.com/ReyhanArdiya/show-search" icon={GitHubLogo} links={[ "HOME", "FAVORITES", "SEARCH" ]}/>
 			<Poster
 				overlayOpacity={0.7}
 				switchDuration={5000}

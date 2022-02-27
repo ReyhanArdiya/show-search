@@ -56,7 +56,7 @@ const Container = styled.nav`
     }
 `;
 
-const Navbar = ({ links, icon }) => {
+const Navbar = ({ links, icon, iconLink }) => {
 	const [ activeLink, setActiveLink ] = useState(1);
 
 	links = links.map(
@@ -71,7 +71,7 @@ const Navbar = ({ links, icon }) => {
 
 	return (
 		<Container activeLink={activeLink} id="navbar-home">
-			<div id="navbar-icon">{icon}</div>
+			<a target={0} href={iconLink} id="navbar-icon">{icon}</a>
 			<div onClick={changeActiveLink} id="navbar-links">{links}</div>
 		</Container>
 	);
