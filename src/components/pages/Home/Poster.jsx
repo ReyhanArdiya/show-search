@@ -11,12 +11,17 @@ const Container = styled.article`
 
     #poster-item {
         width: 100%;
+        height: 400px;
         object-fit: cover;
         transition: opacity ${({ fadeDuration }) => fadeDuration}ms ease-in;
     }
 
     @media screen and (min-width: calc(768em / 16)) and (min-height: calc(640em / 16)) {
         height: 100vh;
+
+        #poster-item {
+            height: auto;
+        }
     }
 `;
 
