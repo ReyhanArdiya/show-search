@@ -5,6 +5,11 @@ const Container = styled.article`
     width: 100%;
     height: max-content;
 
+    #poster-item {
+        width: 100%;
+        object-fit: cover;
+    }
+
     @media screen and (min-width: calc(768em / 16)) and (min-height: calc(640em / 16)) {
         height: 100vh;
     }
@@ -18,7 +23,7 @@ const Container = styled.article`
 const Poster = ({ info }) => {
 	return (
 		<Container>
-			<img src="http://placekitten.com/1000/1000" alt="" />
+			<img id="poster-item" src="http://placekitten.com/1000/1000" alt="" />
 		</Container>
 	);
 };
