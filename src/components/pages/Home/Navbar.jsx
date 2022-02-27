@@ -37,6 +37,10 @@ const Container = styled.nav`
     @media screen and (min-width: calc(768em / 16)) {
         font-size: 1.5em;
     }
+
+    @media screen and (min-width: calc(1440em / 16)) {
+        font-size: 2em;
+    }
 `;
 
 const Navbar = ({ children: links, icon }) => {
