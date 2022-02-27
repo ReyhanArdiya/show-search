@@ -1,5 +1,5 @@
-import React from "react";
 import styled from "styled-components";
+import { useEffect, useState } from "react";
 
 const Container = styled.article`
     width: 100%;
@@ -17,13 +17,23 @@ const Container = styled.article`
 
 /**
  *
- * @param {{info: [{type: String, url: String}]}} props
+ * @param {{info: string[], switchDuration: number}} props
  *
  */
-const Poster = ({ info }) => {
+const Poster = ({ info, switchDuration }) => {
+	const [ whichSrc, setWhichSrc ] = useState(0);
+
+	useEffect(() => {
+		setInterval(() => {
+			setWhichSrc(
+				prevSrc => prevSrc !== info.length - 1 ? prevSrc + 1 : 0
+			);
+		}, switchDuration);
+	}, [ info.length, switchDuration ]);
+
 	return (
 		<Container>
-			<img id="poster-item" src="http://placekitten.com/1000/1000" alt="" />
+			<img id="poster-item" src={info[whichSrc]} alt="" />
 		</Container>
 	);
 };
