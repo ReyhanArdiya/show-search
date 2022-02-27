@@ -29,7 +29,7 @@ const Container = styled.article`
         transition: opacity ${({ fadeDuration }) => fadeDuration}ms ease-in;
     }
 
-    @media screen and (min-width: calc(768em / 16)) and (min-height: calc(640em / 16)) {
+    @media screen and (min-width: calc(768em / 16)) and (min-height: calc(350em / 16)) {
         height: 100vh;
 
         #poster-item {
