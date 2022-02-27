@@ -11,12 +11,14 @@ const Container = styled.nav`
     align-items: center;
     display: flex;
     justify-content: space-evenly;
+    font: 400 1em "Archivo Black", sans-serif;
 
     > *:nth-of-type(1) {
         flex-grow: 0.4;
     }
 
     #navbar-links {
+        font-family: inherit;
         align-items: center;
         display: flex;
         justify-content: space-evenly;
