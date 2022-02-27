@@ -1,13 +1,17 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Container = styled.article`
     width: 100%;
-    height: max-content;
+    background-color: black;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 
     #poster-item {
         width: 100%;
         object-fit: cover;
+        transition: opacity ${({ fadeDuration }) => fadeDuration}ms ease-in;
     }
 
     @media screen and (min-width: calc(768em / 16)) and (min-height: calc(640em / 16)) {
@@ -17,23 +21,39 @@ const Container = styled.article`
 
 /**
  *
- * @param {{info: string[], switchDuration: number}} props
+ * @param {{info: string[], switchDuration: number, fadeDuration: number}} props
  *
  */
-const Poster = ({ info, switchDuration }) => {
+const Poster = ({ info, switchDuration, fadeDuration }) => {
 	const [ whichSrc, setWhichSrc ] = useState(0);
+	const imgRef = useRef();
 
-	useEffect(() => {
-		setInterval(() => {
+	const switchImage = () => {
+		// Gives the fade-in transition on start
+		imgRef.current.style.opacity = 1;
+
+		setTimeout(async () => {
+			// Fade out the image first
+			await new Promise(resolve => {
+				imgRef.current.style.opacity = 0;
+				setTimeout(resolve, fadeDuration);
+			});
+
+			// Render a new image after prev image is dark
 			setWhichSrc(
 				prevSrc => prevSrc !== info.length - 1 ? prevSrc + 1 : 0
 			);
 		}, switchDuration);
-	}, [ info.length, switchDuration ]);
+	};
+
+	useEffect(
+		switchImage,
+		[ fadeDuration, info.length, switchDuration, whichSrc ]
+	);
 
 	return (
-		<Container>
-			<img id="poster-item" src={info[whichSrc]} alt="" />
+		<Container fadeDuration={fadeDuration}>
+			<img ref={imgRef} id="poster-item" src={info[whichSrc]} alt="" />
 		</Container>
 	);
 };
