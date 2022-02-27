@@ -8,6 +8,19 @@ const Container = styled.article`
     display: flex;
     justify-content: center;
     min-height: 320px;
+    position: relative;
+
+    ::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        background-color: black;
+        opacity: ${({ overlayOpacity }) => overlayOpacity};
+    }
 
     #poster-item {
         width: 100%;
@@ -27,10 +40,15 @@ const Container = styled.article`
 
 /**
  *
- * @param {{info: string[], switchDuration: number, fadeDuration: number}} props
+ * @param {{
+ * info: string[],
+ * switchDuration: number,
+ * fadeDuration: number,
+ * overlayOpacity?: number
+ *}} props
  *
  */
-const Poster = ({ info, switchDuration, fadeDuration }) => {
+const Poster = ({ info, switchDuration, fadeDuration, overlayOpacity = 0 }) => {
 	const [ whichSrc, setWhichSrc ] = useState(0);
 	const imgRef = useRef();
 	const isInfoValid = info && info.length;
@@ -61,7 +79,7 @@ const Poster = ({ info, switchDuration, fadeDuration }) => {
 	);
 
 	return (
-		<Container fadeDuration={fadeDuration}>
+		<Container fadeDuration={fadeDuration} overlayOpacity={overlayOpacity}>
 			{isInfoValid ? <img ref={imgRef} id="poster-item" src={info[whichSrc]} alt="" /> : <div id="poster-item"></div>}
 		</Container>
 	);

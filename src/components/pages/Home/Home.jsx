@@ -34,7 +34,12 @@ const Home = () => {
 
 	return (
 		<Container id="page-home">
-			<Poster switchDuration={5000} fadeDuration={1000} info={info}/>
+			<Poster
+				overlayOpacity={0.7}
+				switchDuration={5000}
+				fadeDuration={1000}
+				info={info}
+			/>
 		</Container>
 	);
 };
