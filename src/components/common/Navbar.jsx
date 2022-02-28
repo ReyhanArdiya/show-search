@@ -64,7 +64,10 @@ const Navbar = ({ links, icon, iconLink }) => {
 	const [ activeLink, setActiveLink ] = useState(1);
 
 	links = links.map(
-		(link, i) => <p data-which={i + 1} key={i + 1}>{link}</p>
+		(link, i) => <p
+			data-which={i + 1}
+			key={i + 1}
+		             >{link}</p>
 	);
 
 	const changeActiveLink = ({ target }) => {
@@ -74,9 +77,23 @@ const Navbar = ({ links, icon, iconLink }) => {
 	};
 
 	return (
-		<Container activeLink={activeLink} id="navbar-home">
-			<a target={0} href={iconLink} id="navbar-icon">{icon}</a>
-			<div onClick={changeActiveLink} id="navbar-links">{links}</div>
+		<Container
+			activeLink={activeLink}
+			id="navbar-home"
+		>
+			<a
+				target={0}
+				href={iconLink}
+				id="navbar-icon"
+			>
+				{icon}
+			</a>
+			<div
+				onClick={changeActiveLink}
+				id="navbar-links"
+			>
+				{links}
+			</div>
 		</Container>
 	);
 };
