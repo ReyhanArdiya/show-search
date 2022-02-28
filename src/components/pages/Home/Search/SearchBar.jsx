@@ -1,12 +1,14 @@
 import styled from "styled-components";
 
 const Container = styled.div`
+    --font-size: 1em;
     align-items: center;
     width: 100%;
     display: flex;
     justify-content: center;
     height: 2em;
     border-radius: 1em;
+    font-size: var(--font-size);
 
     .searchbar-input {
         border-radius: inherit;
@@ -37,8 +39,6 @@ const Container = styled.div`
     .searchbar-icon {
         cursor: pointer;
         position: relative;
-        /* add styles from here */
-
     }
 
     .searchbar-icon::before {
@@ -51,6 +51,12 @@ const Container = styled.div`
         opacity: 0;
         background-color: black;
         transition: opacity 0.25s linear;
+        border-radius: inherit;
+    }
+
+    .searchbar-icon svg {
+        height: 1.25em;
+        width: 1.25em;
     }
 
     .searchbar-icon:hover::before {
@@ -60,6 +66,14 @@ const Container = styled.div`
     .searchbar-icon:active::before {
         opacity: 0.4;
         transition: opacity 0.05s linear;
+    }
+
+    @media screen and (min-width: calc(768em / 16)) {
+        font-size: calc(var(--font-size) + 0.5em);
+    }
+
+    @media screen and (min-width: calc(1440em / 16)) {
+        font-size: calc(var(--font-size) + 1em);
     }
 `;
 
