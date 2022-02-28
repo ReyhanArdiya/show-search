@@ -19,6 +19,11 @@ const Container = styled.section`
 	#home-intro {
 		position: absolute;
 		z-index: 5;
+		align-items: center;
+		display: flex;
+		justify-content: space-between;
+		flex-direction: column;
+		row-gap: 1em;
 	}
 `;
 
