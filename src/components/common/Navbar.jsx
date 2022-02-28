@@ -5,7 +5,7 @@ const Container = styled.nav`
     --font-size: 0.75em;
     align-items: center;
     display: flex;
-    font: 400 1em "Archivo Black", sans-serif;
+    font: 500 1em "Poppins", sans-serif;
     justify-content: space-between;
     padding: 0.75em;
     position: absolute;
@@ -46,7 +46,7 @@ const Container = styled.nav`
     #navbar-links > *:nth-child(${({ activeLink }) => activeLink}),
     #navbar-links > *:hover {
         color: white;
-        border-bottom: 0.25em solid white;
+        border-bottom: 0.15em solid white;
     }
 
     @media screen and (min-width: calc(768em / 16)) {
