@@ -1,3 +1,4 @@
+import Intro from "./Intro";
 import Poster from "./Poster";
 import axios from "axios";
 import styled from "styled-components";
@@ -5,6 +6,19 @@ import { useEffect, useState } from "react";
 
 const Container = styled.section`
 	position: relative;
+
+	#home-header {
+		height: 100%;
+		align-items: center;
+		display: flex;
+		justify-content: center;
+		position: relative;
+	}
+
+	#home-header .intro {
+		position: absolute;
+		z-index: 5;
+	}
 `;
 
 const Home = () => {
@@ -35,12 +49,18 @@ const Home = () => {
 
 	return (
 		<Container id="page-home">
-			<Poster
-				overlayOpacity={0.7}
-				switchDuration={5000}
-				fadeDuration={1000}
-				info={info}
-			/>
+			<header id="home-header">
+				<Intro
+					title="SHOW SEARCH"
+					subtitle="Search for the shows you like!"
+				/>
+				<Poster
+					overlayOpacity={0.7}
+					switchDuration={5000}
+					fadeDuration={1000}
+					info={info}
+				/>
+			</header>
 		</Container>
 	);
 };
