@@ -40,7 +40,9 @@ const Container = styled.nav`
 
     #navbar-links > * {
         cursor: pointer;
-        transition: color 0.15s ease-in;
+        transition-property: color, border-bottom;
+        transition-duration: 0.15s;
+        transition-timing-function: ease-in;
     }
 
     #navbar-links > *:nth-child(${({ activeLink }) => activeLink}),
