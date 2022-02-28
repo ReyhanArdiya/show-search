@@ -3,15 +3,16 @@ import axios from "axios";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 
-const Container = styled.section``;
+const Container = styled.section`
+	position: relative;
+`;
 
 const Home = () => {
 	const [ info, setInfo ] = useState([]);
 
 	/* CMT The original goal of this function was to get trending shows, but I can't
-     seem to find an API for it that doesn't require authenciation so Imma fake it */
-	const getTrendingShows = async () => {
-		const shows = [ "the cuphead show", "euphoria", "what we do in the shadows", "WandaVision" ];
+     seem to find an API for it that doesn't require authentication, so Imma fake it for now*/
+	const getTrendingShows = async (...shows) => {
 		const trending = [];
 
 		for (let i = 0; i < shows.length; i++) {
@@ -30,7 +31,7 @@ const Home = () => {
 		setInfo(trending);
 	};
 
-	useEffect(() => getTrendingShows(), []);
+	useEffect(() => getTrendingShows("the cuphead show", "euphoria", "what we do in the shadows", "WandaVision"), []);
 
 	return (
 		<Container id="page-home">

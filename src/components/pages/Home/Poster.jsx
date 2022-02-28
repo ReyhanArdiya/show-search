@@ -79,8 +79,19 @@ const Poster = ({ info, switchDuration, fadeDuration, overlayOpacity = 0 }) => {
 	);
 
 	return (
-		<Container fadeDuration={fadeDuration} overlayOpacity={overlayOpacity}>
-			{isInfoValid ? <img ref={imgRef} id="poster-item" src={info[whichSrc]} alt="" /> : <div id="poster-item"></div>}
+		<Container
+			fadeDuration={fadeDuration}
+			overlayOpacity={overlayOpacity}
+		>
+			{isInfoValid ?
+				<img
+					ref={imgRef}
+					id="poster-item"
+					src={info[whichSrc]}
+					alt=""
+				/>			:
+				<div id="poster-item" />
+			}
 		</Container>
 	);
 };
