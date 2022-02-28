@@ -32,6 +32,35 @@ const Container = styled.div`
         display: flex;
         justify-content: center;
     }
+
+    /* searchbar icon overlay on hover/active */
+    .searchbar-icon {
+        cursor: pointer;
+        position: relative;
+        /* add styles from here */
+
+    }
+
+    .searchbar-icon::before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        background-color: black;
+        transition: opacity 0.25s linear;
+    }
+
+    .searchbar-icon:hover::before {
+        opacity: 0.2;
+    }
+
+    .searchbar-icon:active::before {
+        opacity: 0.4;
+        transition: opacity 0.05s linear;
+    }
 `;
 
 const SearchIcon =
