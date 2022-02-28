@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useState } from "react";
 
 const Container = styled.nav`
+    --font-size: 0.75em;
     align-items: center;
     display: flex;
     font: 400 1em "Archivo Black", sans-serif;
@@ -11,6 +12,7 @@ const Container = styled.nav`
     top: 0;
     width: 100%;
     z-index: 10;
+    font-size: var(--font-size);
 
     #navbar-icon {
         height: 1.5em;
@@ -33,7 +35,7 @@ const Container = styled.nav`
         align-items: center;
         display: flex;
         justify-content: space-evenly;
-        gap: 0.5em;
+        gap: 1em;
     }
 
     #navbar-links > * {
@@ -48,17 +50,13 @@ const Container = styled.nav`
     }
 
     @media screen and (min-width: calc(768em / 16)) {
-        font-size: 1.5em;
+        font-size: calc(var(--font-size) + 0.25em);
         padding-left: 1em;
         padding-right: 1em;
-
-        #navbar-links {
-            gap: 1em;
-        }
     }
 
     @media screen and (min-width: calc(1440em / 16)) {
-        font-size: 2em;
+        font-size: calc(var(--font-size) + 0.5em);
     }
 `;
 
