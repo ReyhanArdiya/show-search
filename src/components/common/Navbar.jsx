@@ -13,6 +13,7 @@ const Container = styled.nav`
     width: 100%;
     z-index: 10;
     font-size: var(--font-size);
+    -webkit-tap-highlight-color: transparent;
 
     #navbar-icon {
         height: 1.5em;
