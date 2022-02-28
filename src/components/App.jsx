@@ -2,7 +2,7 @@ import Home from "./pages/Home/Home";
 import Navbar from "./common/Navbar";
 import styled from "styled-components";
 
-const Container = styled.main`
+const Container = styled.div`
 	overflow: hidden;
 	font-size: 1em;
 	min-width: 320px;
