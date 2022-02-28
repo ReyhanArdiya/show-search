@@ -1,5 +1,6 @@
 import Intro from "./Intro";
 import Poster from "./Poster";
+import SearchBar from "./Search/SearchBar";
 import axios from "axios";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
@@ -15,7 +16,7 @@ const Container = styled.section`
 		position: relative;
 	}
 
-	#home-header .intro {
+	#home-intro {
 		position: absolute;
 		z-index: 5;
 	}
@@ -50,10 +51,13 @@ const Home = () => {
 	return (
 		<Container id="page-home">
 			<header id="home-header">
-				<Intro
-					title="SHOW SEARCH"
-					subtitle="Search for the shows you like!"
-				/>
+				<div id="home-intro">
+					<Intro
+						title="SHOW SEARCH"
+						subtitle="Search for the shows you like!"
+					/>
+					<SearchBar />
+				</div>
 				<Poster
 					overlayOpacity={0.7}
 					switchDuration={5000}
