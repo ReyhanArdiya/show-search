@@ -36,6 +36,14 @@ const Container = styled.article`
             height: auto;
         }
     }
+
+    @media screen and (min-width: calc(768em / 16)) and (min-height: calc(800em / 16)) {
+        height: 70vh;
+
+        #poster-item {
+            height: auto;
+        }
+    }
 `;
 
 /**
