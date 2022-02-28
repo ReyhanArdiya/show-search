@@ -82,7 +82,7 @@ const Navbar = ({ links, icon, iconLink }) => {
 	return (
 		<Container
 			activeLink={activeLink}
-			id="navbar-home"
+			id="navbar-main"
 		>
 			<a
 				target={0}
