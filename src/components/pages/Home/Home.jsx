@@ -1,5 +1,6 @@
 import Intro from "./Intro";
 import Poster from "./Poster";
+import SearchArea from "./Search/SearchArea";
 import SearchBar from "./Search/SearchBar";
 import axios from "axios";
 import styled from "styled-components";
@@ -22,6 +23,9 @@ const Header = styled.header`
 		row-gap: 1em;
 	}
 `;
+
+// TODO change this to useContext later
+const SearchAreaBackground = "rgba(78,78,78,1)";
 
 const Home = () => {
 	const [ info, setInfo ] = useState([]);
@@ -64,8 +68,12 @@ const Home = () => {
 					switchDuration={5000}
 					fadeDuration={1000}
 					info={info}
+					bottomGradient={SearchAreaBackground}
 				/>
 			</Header>
+			<SearchArea background={SearchAreaBackground}>
+				<SearchBar />
+			</SearchArea>
 		</>
 	);
 };

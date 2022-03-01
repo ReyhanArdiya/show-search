@@ -22,6 +22,17 @@ const Container = styled.article`
         opacity: ${({ overlayOpacity }) => overlayOpacity};
     }
 
+	::after {
+		content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+		background: linear-gradient(180deg, rgba(0,0,0,0) 0%, ${({ bottomGradient }) => bottomGradient} 100%);
+	}
+
     #poster-item {
         width: 100%;
         height: 400px;
@@ -52,11 +63,18 @@ const Container = styled.article`
  * info: string[],
  * switchDuration: number,
  * fadeDuration: number,
+ * bottomGradient: string,
  * overlayOpacity?: number
  *}} props
  *
  */
-const Poster = ({ info, switchDuration, fadeDuration, overlayOpacity = 0 }) => {
+const Poster = ({
+	info,
+	switchDuration,
+	fadeDuration,
+	bottomGradient,
+	overlayOpacity = 0
+}) => {
 	const [ whichSrc, setWhichSrc ] = useState(0);
 	const imgRef = useRef();
 	const isInfoValid = info && info.length;
@@ -90,6 +108,7 @@ const Poster = ({ info, switchDuration, fadeDuration, overlayOpacity = 0 }) => {
 		<Container
 			fadeDuration={fadeDuration}
 			overlayOpacity={overlayOpacity}
+			bottomGradient={bottomGradient}
 		>
 			{isInfoValid ?
 				<img
