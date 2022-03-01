@@ -5,16 +5,12 @@ import axios from "axios";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 
-const Container = styled.section`
+const Header = styled.header`
+	height: 100%;
+	align-items: center;
+	display: flex;
+	justify-content: center;
 	position: relative;
-
-	#home-header {
-		height: 100%;
-		align-items: center;
-		display: flex;
-		justify-content: center;
-		position: relative;
-	}
 
 	#home-intro {
 		position: absolute;
@@ -54,8 +50,8 @@ const Home = () => {
 	useEffect(() => getTrendingShows("the cuphead show", "euphoria", "what we do in the shadows", "WandaVision"), []);
 
 	return (
-		<Container id="page-home">
-			<header id="home-header">
+		<>
+			<Header id="home-header">
 				<div id="home-intro">
 					<Intro
 						title="SHOW SEARCH"
@@ -69,8 +65,8 @@ const Home = () => {
 					fadeDuration={1000}
 					info={info}
 				/>
-			</header>
-		</Container>
+			</Header>
+		</>
 	);
 };
 
