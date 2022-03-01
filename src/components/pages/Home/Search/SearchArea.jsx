@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 const Container = styled.section`
 	background: ${({ background }) => background};
-	height: 350px;
+	min-height: 500px;
+	height: 80vmax;
 	overflow-y: auto;
 	position: relative;
 	z-index: 2;
@@ -23,6 +24,14 @@ const SearchResults = styled.section`
 
 	> * {
 		max-width: 100%;
+	}
+
+	@media screen and (min-width: calc(768em / 16)) {
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+
+		> * {
+			grid-area: span 1/ span 1 !important;
+		}
 	}
 `;
 
