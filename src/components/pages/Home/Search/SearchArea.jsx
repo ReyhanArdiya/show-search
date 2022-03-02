@@ -1,4 +1,3 @@
-import ErrorModal from "../../../common/ErrorModal";
 import SearchContext from "../../../../context/search-context";
 import styled from "styled-components";
 
@@ -89,10 +88,6 @@ const SearchArea = ({ background }) => {
 						id="search-area"
 						background={background}
 					>
-						<ErrorModal
-							title="Wrong!"
-							message="lorem ipsum dolor domo lorem ipsu dloor domo lorem ipsum dolor domo lorem ipsu dloor domo lorem ipsum dolor domo lorem ipsu dloor domolorem ipsum dolor domo lorem ipsu dloor domolorem ipsum dolor domo lorem ipsu dloor domo domolorem ipsum dolor domo lorem ipsu dloor domolorem ipsum dolor domo lorem ipsu dloor domo domolorem ipsum dolor domo lorem ipsu dloor domolorem ipsum dolor domo lorem ipsu dloor domo"
-						/>
 						<SearchResults id="search-results">
 							{specifyBigImages(
 								searchResults.map(({ img }) => ({ src : img })),

@@ -1,5 +1,7 @@
+import ErrorModal from "../../../common/ErrorModal";
 import axios from "axios";
 import styled from "styled-components";
+import { useState } from "react";
 
 const Container = styled.form`
     --font-size: 1em;
@@ -97,33 +99,48 @@ const searchTVMaze = async q => {
 	return res.data;
 };
 
+// TODO add spam prevention
 const SearchBar = ({ dispatchSearchResults }) => {
+	const [ isValid, setIsValid ] = useState(true);
+
 	// TODO add ref from searchBar using useContext so that we can scroll to it after searching
 	const searchShows = async e => {
 		e.preventDefault();
+		const { target: { elements: [ { value: input } ] } } = e;
 
-		try {
-			dispatchSearchResults(
-				await searchTVMaze(e.target.elements[0].value)
-			);
-		} catch (err) {
-			console.error(err);
+		if (!input) {
+			setIsValid(false);
+		} else {
+			try {
+				dispatchSearchResults(
+					await searchTVMaze(input)
+				);
+			} catch (err) {
+				console.error(err);
+			}
 		}
 	};
 
+	const closeModal = () => {
+		setIsValid(true);
+	};
+
 	return (
-		<Container
-			onSubmit={searchShows}
-			className="searchbar"
-		>
-			<input
-				type="text"
-				className="searchbar-input"
-			/>
-			<button className="searchbar-icon">
-				{SearchIcon}
-			</button>
-		</Container>
+		<>
+			{!isValid && <ErrorModal onButtonClick={closeModal} />}
+			<Container
+				onSubmit={searchShows}
+				className="searchbar"
+			>
+				<input
+					type="text"
+					className="searchbar-input"
+				/>
+				<button className="searchbar-icon">
+					{SearchIcon}
+				</button>
+			</Container>
+		</>
 	);
 };
 

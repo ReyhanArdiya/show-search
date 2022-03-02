@@ -1,6 +1,5 @@
 import ReactDOM from "react-dom";
 import styled from "styled-components";
-import { useState } from "react";
 
 const Container = styled.div`
     position: fixed;
@@ -15,7 +14,7 @@ const Container = styled.div`
     overflow: hidden;
 `;
 
-const Content = styled.form`
+const Content = styled.article`
     --font-size: 1em;
     width: 70%;
     height: max-content;
@@ -91,26 +90,17 @@ const Content = styled.form`
     }
 `;
 
-const ErrorModal = ({ title, message }) => {
-	const [ visibility, setVisibility ] = useState(true);
-
-	const closeModal = e => {
-		e.preventDefault();
-		setVisibility(false);
-	};
-
-	return visibility ?
-		ReactDOM.createPortal(
-			<Container className="modal-error">
-				<Content onSubmit={closeModal}>
-					<h2 className="error-title">{title}</h2>
-					<p className="error-message">{message}</p>
-					<button>Okay</button>
-				</Content>
-			</Container>,
-			document.body
-		) :
-		null;
+const ErrorModal = ({ onButtonClick, title, message }) => {
+	return ReactDOM.createPortal(
+		<Container className="modal-error">
+			<Content>
+				<h2 className="error-title">{title}</h2>
+				<p className="error-message">{message}</p>
+				<button onClick={onButtonClick}>Okay</button>
+			</Content>
+		</Container>,
+		document.body
+	);
 };
 
 export default ErrorModal;
