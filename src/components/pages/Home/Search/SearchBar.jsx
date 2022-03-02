@@ -1,8 +1,7 @@
 import axios from "axios";
 import styled from "styled-components";
-import { useEffect } from "react";
 
-const Container = styled.div`
+const Container = styled.form`
     --font-size: 1em;
     align-items: center;
     width: 100%;
@@ -41,6 +40,8 @@ const Container = styled.div`
     .searchbar-icon {
         cursor: pointer;
         position: relative;
+        border: none;
+        outline: none;
     }
 
     .searchbar-icon::before {
@@ -97,21 +98,23 @@ const searchTVMaze = async q => {
 };
 
 const SearchBar = ({ dispatchSearchResults }) => {
-	useEffect(() => {
-		(async () => {
-			dispatchSearchResults(await searchTVMaze("girls"));
-		})();
-	}, [ dispatchSearchResults ]);
+	const searchShows = async e => {
+		e.preventDefault();
+		dispatchSearchResults(await searchTVMaze(e.target.elements[0].value));
+	};
 
 	return (
-		<Container className="searchbar">
+		<Container
+			onSubmit={searchShows}
+			className="searchbar"
+		>
 			<input
 				type="text"
 				className="searchbar-input"
 			/>
-			<div className="searchbar-icon">
+			<button className="searchbar-icon">
 				{SearchIcon}
-			</div>
+			</button>
 		</Container>
 	);
 };
