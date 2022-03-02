@@ -51,11 +51,11 @@ const SearchResults = styled.section`
  * @example
  * Make img 0, 4, 6, 10, 12... big
  * ```js
- *	specifyBigImages(srcArr, 4, 2);
+ *	createSizedImages(srcArr, 4, 2);
  * ```
  *
  */
-const specifyBigImages = (srcArr, spanSize, stepOne, stepTwo) => {
+const createSizedImages = (srcArr, spanSize, stepOne, stepTwo) => {
 	let makeBig = 0;
 	let step = 0;
 
@@ -79,6 +79,14 @@ const specifyBigImages = (srcArr, spanSize, stepOne, stepTwo) => {
 	});
 };
 
+// TODO add clickable link and alt/title here
+const buildImages = searchResults => {
+	const images = searchResults.map(({ img }) => ({ src : img }))
+		                        .filter(({ src }) => typeof src === "string");
+
+	return createSizedImages(images, 1, 4, 2);
+};
+
 const SearchArea = ({ background }) => {
 	return (
 		<SearchContext.Consumer>
@@ -89,12 +97,7 @@ const SearchArea = ({ background }) => {
 						background={background}
 					>
 						<SearchResults id="search-results">
-							{specifyBigImages(
-								searchResults.map(({ img }) => ({ src : img })),
-								1,
-								4,
-								2
-							)}
+							{buildImages(searchResults)}
 						</SearchResults>
 					</Container>
 				);
