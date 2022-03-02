@@ -1,7 +1,8 @@
 import ErrorModal from "../../../common/ErrorModal";
+import SearchContext from "../../../../context/search-context";
 import axios from "axios";
 import styled from "styled-components";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 const Container = styled.form`
     --font-size: 1em;
@@ -101,13 +102,13 @@ const searchTVMaze = async q => {
 
 // TODO add spam prevention
 const SearchBar = ({ dispatchSearchResults }) => {
+	const { SearchAreaRef : { current } } = useContext(SearchContext);
 	const [ validity, setValidity ] = useState({
 		isValid : true,
 		message : "",
 		title   : ""
 	});
 
-	// TODO add ref from searchBar using useContext so that we can scroll to it after searching
 	const searchShows = async e => {
 		e.preventDefault();
 		const { target: { elements: [ { value: input } ] } } = e;
@@ -123,6 +124,7 @@ const SearchBar = ({ dispatchSearchResults }) => {
 				dispatchSearchResults(
 					await searchTVMaze(input)
 				);
+				current.scrollIntoView({ behavior : "smooth" });
 			} catch (err) {
 				console.error(err);
 			}

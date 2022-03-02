@@ -111,13 +111,14 @@ const buildImages = searchResults => {
 	return createSizedImages(images, 1, 4, 2);
 };
 
-const SearchArea = ({ background }) => {
+const SearchArea = ({ background, SearchAreaRef }) => {
 	const { searchResults } = useContext(SearchContext);
 
 	return (
 		<Container
 			id="search-area"
 			background={background}
+			ref={SearchAreaRef}
 		>
 			<SearchResults id="search-results">
 				{buildImages(searchResults)}

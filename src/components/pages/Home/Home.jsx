@@ -5,7 +5,7 @@ import SearchBar from "./Search/SearchBar";
 import SearchContext from "../../../context/search-context";
 import axios from "axios";
 import styled from "styled-components";
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
 
 const Header = styled.header`
 	height: 100%;
@@ -47,6 +47,7 @@ const Home = () => {
 		searchResultsReducer,
 		[]
 	);
+	const SearchAreaRef = useRef();
 
 	/* CMT The original goal of this function was to get trending shows, but I can't
      seem to find an API for it that doesn't require authentication, so Imma fake it for now*/
@@ -76,7 +77,11 @@ const Home = () => {
 	useEffect(() => getTrendingShows("the cuphead show", "euphoria", "what we do in the shadows", "WandaVision"), []);
 
 	return (
-		<SearchContext.Provider value={{ searchResults }}>
+		<SearchContext.Provider value={{
+			SearchAreaRef,
+			searchResults
+		}}
+		>
 			<Header id="home-header">
 				<div id="home-intro">
 					<Intro
@@ -95,6 +100,7 @@ const Home = () => {
 			</Header>
 			<SearchArea
 				background={SearchAreaBackground}
+				SearchAreaRef={SearchAreaRef}
 			/>
 		</SearchContext.Provider>
 	);
