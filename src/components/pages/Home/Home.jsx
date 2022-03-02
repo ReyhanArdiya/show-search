@@ -1,5 +1,5 @@
-import Intro from "./Intro";
-import Poster from "./Poster";
+import Intro from "./Header/Intro";
+import Poster from "./Header/Poster";
 import SearchArea from "./Search/SearchArea";
 import SearchBar from "./Search/SearchBar";
 import SearchContext from "../../../context/search-context";
