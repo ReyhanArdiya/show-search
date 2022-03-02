@@ -37,6 +37,24 @@ const SearchResults = styled.section`
 	}
 `;
 
+const ShowImage = styled.img`
+	border-radius: 0.25em;
+	box-shadow: 0px 0.2em 0.315em 0px #000000a1;
+
+	@keyframes scaleImage {
+		from {
+			transform: scale(0);
+		}
+
+		to {
+			transform: scale(1);
+		}
+	}
+
+	transform-origin: center;
+	animation: scaleImage 0.3s 1 ease-out forwards;
+`;
+
 /**
  * When given a string array of img sources, make the first img big by grid-area
  * span inline style and every img after that on `stepOne` and `stepTwo`.
@@ -70,11 +88,12 @@ const createSizedImages = (srcArr, spanSize, stepOne, stepTwo) => {
 		}
 
 		return (
-			<img
+			<ShowImage
 				src={src}
 				alt=""
 				key={uuidv4()}
 				style={{ gridArea }}
+				loading="lazy"
 			/>
 		);
 	});
