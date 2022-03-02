@@ -20,6 +20,8 @@ const SearchResults = styled.section`
 	gap: 0.5em;
 	grid-auto-rows: min-content;
 	grid-template-columns: 1fr 1fr 1fr;
+	justify-items: center;
+	align-items: center;
 	height: max-content;
 	margin: 0 auto 1em auto;
 	width: 85%;
@@ -30,6 +32,7 @@ const SearchResults = styled.section`
 
 	@media screen and (min-width: calc(768em / 16)) {
 		grid-template-columns: 1fr 1fr 1fr 1fr;
+		max-width: 850px;
 
 		> * {
 			grid-area: span 1/ span 1 !important;
