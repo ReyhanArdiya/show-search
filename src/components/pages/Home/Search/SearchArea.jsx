@@ -42,6 +42,8 @@ const SearchResults = styled.section`
  *
  * @param {string[]} srcArr
  *
+ * @param {number} spanSize
+ *
  * @param {number} stepOne
  *
  * @param {number} stepTwo
@@ -53,7 +55,7 @@ const SearchResults = styled.section`
  * ```
  *
  */
-const specifyBigImages = (srcArr, stepOne, stepTwo) => {
+const specifyBigImages = (srcArr, spanSize, stepOne, stepTwo) => {
 	let makeBig = 0;
 	let step = 0;
 
@@ -61,7 +63,7 @@ const specifyBigImages = (srcArr, stepOne, stepTwo) => {
 		let gridArea;
 
 		if (i === makeBig) {
-			gridArea = "span 2/ span 2";
+			gridArea = `span ${spanSize}/ span ${spanSize}`;
 			step = step === stepTwo || !step ? stepOne : stepTwo;
 			makeBig += step;
 		}
@@ -89,6 +91,7 @@ const SearchArea = ({ background }) => {
 						<SearchResults id="search-results">
 							{specifyBigImages(
 								searchResults.map(({ img }) => ({ src : img })),
+								1,
 								4,
 								2
 							)}
