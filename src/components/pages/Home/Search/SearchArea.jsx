@@ -1,5 +1,6 @@
 import SearchContext from "../../../../context/search-context";
 import styled from "styled-components";
+import { useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 const Container = styled.section`
@@ -102,7 +103,7 @@ const createSizedImages = (srcArr, spanSize, stepOne, stepTwo) => {
 	});
 };
 
-// TODO add clickable link and alt/title here
+// TODO add clickable link and alt/title here and in the func above
 const buildImages = searchResults => {
 	const images = searchResults.map(({ img }) => ({ src : img }))
 		                        .filter(({ src }) => typeof src === "string");
@@ -111,21 +112,17 @@ const buildImages = searchResults => {
 };
 
 const SearchArea = ({ background }) => {
+	const { searchResults } = useContext(SearchContext);
+
 	return (
-		<SearchContext.Consumer>
-			{({ searchResults }) => {
-				return (
-					<Container
-						id="search-area"
-						background={background}
-					>
-						<SearchResults id="search-results">
-							{buildImages(searchResults)}
-						</SearchResults>
-					</Container>
-				);
-			}}
-		</SearchContext.Consumer>
+		<Container
+			id="search-area"
+			background={background}
+		>
+			<SearchResults id="search-results">
+				{buildImages(searchResults)}
+			</SearchResults>
+		</Container>
 	);
 };
 
