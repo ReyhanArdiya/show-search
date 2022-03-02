@@ -98,9 +98,17 @@ const searchTVMaze = async q => {
 };
 
 const SearchBar = ({ dispatchSearchResults }) => {
+	// TODO add ref from searchBar using useContext so that we can scroll to it after searching
 	const searchShows = async e => {
 		e.preventDefault();
-		dispatchSearchResults(await searchTVMaze(e.target.elements[0].value));
+
+		try {
+			dispatchSearchResults(
+				await searchTVMaze(e.target.elements[0].value)
+			);
+		} catch (err) {
+			console.error(err);
+		}
 	};
 
 	return (
