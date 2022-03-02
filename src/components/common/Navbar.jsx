@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 const Container = styled.nav`
     --font-size: 0.75em;
@@ -69,7 +70,7 @@ const Navbar = ({ links, icon, iconLink }) => {
 	links = links.map(
 		(link, i) => <p
 			data-which={i + 1}
-			key={i + 1}
+			key={uuidv4()}
 		             >{link}</p>
 	);
 

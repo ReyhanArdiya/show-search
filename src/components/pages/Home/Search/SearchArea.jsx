@@ -1,5 +1,6 @@
 import SearchContext from "../../../../context/search-context";
 import styled from "styled-components";
+import { v4 as uuidv4 } from "uuid";
 
 const Container = styled.section`
 	background: ${({ background }) => background};
@@ -72,7 +73,7 @@ const createSizedImages = (srcArr, spanSize, stepOne, stepTwo) => {
 			<img
 				src={src}
 				alt=""
-				key={i}
+				key={uuidv4()}
 				style={{ gridArea }}
 			/>
 		);
