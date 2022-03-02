@@ -41,6 +41,9 @@ const Content = styled.article`
         overflow-y: auto;
         font: 400 1em "Poppins";
         padding: 0 0.25em;
+        align-items: center;
+        display: flex;
+        justify-content: center;
     }
 
     .error-message::-webkit-scrollbar {

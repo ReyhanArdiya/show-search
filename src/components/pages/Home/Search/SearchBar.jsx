@@ -101,7 +101,11 @@ const searchTVMaze = async q => {
 
 // TODO add spam prevention
 const SearchBar = ({ dispatchSearchResults }) => {
-	const [ isValid, setIsValid ] = useState(true);
+	const [ validity, setValidity ] = useState({
+		isValid : true,
+		message : "",
+		title   : ""
+	});
 
 	// TODO add ref from searchBar using useContext so that we can scroll to it after searching
 	const searchShows = async e => {
@@ -109,7 +113,11 @@ const SearchBar = ({ dispatchSearchResults }) => {
 		const { target: { elements: [ { value: input } ] } } = e;
 
 		if (!input) {
-			setIsValid(false);
+			setValidity({
+				isValid : false,
+				message : "Make sure to search for something",
+				title   : "No Input"
+			});
 		} else {
 			try {
 				dispatchSearchResults(
@@ -122,12 +130,18 @@ const SearchBar = ({ dispatchSearchResults }) => {
 	};
 
 	const closeModal = () => {
-		setIsValid(true);
+		setValidity({ isValid : true });
 	};
 
 	return (
 		<>
-			{!isValid && <ErrorModal onButtonClick={closeModal} />}
+			{!validity.isValid &&
+				<ErrorModal
+					title={validity.title}
+					message={validity.message}
+					onButtonClick={closeModal}
+				/>
+			}
 			<Container
 				onSubmit={searchShows}
 				className="searchbar"
@@ -136,9 +150,7 @@ const SearchBar = ({ dispatchSearchResults }) => {
 					type="text"
 					className="searchbar-input"
 				/>
-				<button className="searchbar-icon">
-					{SearchIcon}
-				</button>
+				<button className="searchbar-icon">{SearchIcon}</button>
 			</Container>
 		</>
 	);
