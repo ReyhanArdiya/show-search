@@ -2,9 +2,10 @@ import Intro from "./Intro";
 import Poster from "./Poster";
 import SearchArea from "./Search/SearchArea";
 import SearchBar from "./Search/SearchBar";
+import SearchContext from "../../../context/search-context";
 import axios from "axios";
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 
 const Header = styled.header`
 	height: 100%;
@@ -27,8 +28,25 @@ const Header = styled.header`
 // TODO change this to useContext later
 const SearchAreaBackground = "rgba(78,78,78,1)";
 
+const searchResultsReducer = (prevResults, newResults) => {
+	return newResults.map(({ show }) => {
+		const { name, officialSite, image } = show;
+		const img = image?.medium || image?.original;
+
+		return {
+			img,
+			name,
+			officialSite
+		};
+	});
+};
+
 const Home = () => {
 	const [ info, setInfo ] = useState([]);
+	const [ searchResults, dispatchSearchResults ] = useReducer(
+		searchResultsReducer,
+		[]
+	);
 
 	/* CMT The original goal of this function was to get trending shows, but I can't
      seem to find an API for it that doesn't require authentication, so Imma fake it for now*/
@@ -54,14 +72,14 @@ const Home = () => {
 	useEffect(() => getTrendingShows("the cuphead show", "euphoria", "what we do in the shadows", "WandaVision"), []);
 
 	return (
-		<>
+		<SearchContext.Provider value={{ searchResults }}>
 			<Header id="home-header">
 				<div id="home-intro">
 					<Intro
 						title="SHOW SEARCH"
 						subtitle="Search for the shows you like!"
 					/>
-					<SearchBar />
+					<SearchBar dispatchSearchResults={dispatchSearchResults}/>
 				</div>
 				<Poster
 					overlayOpacity={0.7}
@@ -148,7 +166,7 @@ const Home = () => {
 					{ src : "https://static.tvmaze.com/uploads/images/original_untouched/204/511783.jpg" },
 				]}
 			/>
-		</>
+		</SearchContext.Provider>
 	);
 };
 

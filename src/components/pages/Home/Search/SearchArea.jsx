@@ -1,3 +1,4 @@
+import SearchContext from "../../../../context/search-context";
 import styled from "styled-components";
 
 const Container = styled.section`
@@ -76,18 +77,26 @@ const specifyBigImages = (srcArr, stepOne, stepTwo) => {
 	});
 };
 
-const SearchArea = ({ background, searchResults }) => {
-	searchResults &&= specifyBigImages(searchResults, 4, 2);
-
+const SearchArea = ({ background }) => {
 	return (
-		<Container
-			id="search-area"
-			background={background}
-		>
-			<SearchResults id="search-results">
-				{searchResults}
-			</SearchResults>
-		</Container>
+		<SearchContext.Consumer>
+			{({ searchResults }) => {
+				return (
+					<Container
+						id="search-area"
+						background={background}
+					>
+						<SearchResults id="search-results">
+							{specifyBigImages(
+								searchResults.map(({ img }) => ({ src : img })),
+								4,
+								2
+							)}
+						</SearchResults>
+					</Container>
+				);
+			}}
+		</SearchContext.Consumer>
 	);
 };
 
