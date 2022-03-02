@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useState } from "react";
 
 const Container = styled.div`
-    position: absolute;
+    position: fixed;
     top: 0;
     z-index: 50;
     width: 100vw;
@@ -92,12 +92,10 @@ const Content = styled.form`
 `;
 
 const ErrorModal = ({ title, message }) => {
-	document.body.style.overflow = "hidden";
 	const [ visibility, setVisibility ] = useState(true);
 
 	const closeModal = e => {
 		e.preventDefault();
-
 		setVisibility(false);
 	};
 
