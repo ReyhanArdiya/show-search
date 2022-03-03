@@ -100,7 +100,7 @@ const searchTVMaze = async q => {
 	return res.data;
 };
 
-// TODO add spam prevention
+let canSearch = true;
 const SearchBar = ({ dispatchSearchResults }) => {
 	const { SearchAreaRef : { current } } = useContext(SearchContext);
 	const [ validity, setValidity ] = useState({
@@ -119,12 +119,14 @@ const SearchBar = ({ dispatchSearchResults }) => {
 				message : "Make sure to search for something",
 				title   : "No Input"
 			});
-		} else {
+		} else if (canSearch) {
 			try {
 				dispatchSearchResults(
 					await searchTVMaze(input)
 				);
 				current.scrollIntoView({ behavior : "smooth" });
+				canSearch = false;
+				setTimeout(() => canSearch = true, 1_000);
 			} catch (err) {
 				console.error(err);
 			}
