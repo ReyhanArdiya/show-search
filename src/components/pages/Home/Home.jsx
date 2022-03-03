@@ -34,9 +34,9 @@ const searchResultsReducer = (prevResults, newResults) => {
 		const img = image?.medium || image?.original;
 
 		return {
-			img,
 			name,
-			officialSite
+			officialSite,
+			src : img
 		};
 	});
 };

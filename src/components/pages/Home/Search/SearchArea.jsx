@@ -111,20 +111,20 @@ const createSizedImages = (srcArr, spanSize, stepOne, stepTwo) => {
 	});
 };
 
-// TODO add clickable link and alt/title here and in the func above
 const buildImages = searchResults => {
-	const images =
-		searchResults
-			.map(
-				({ img, name, officialSite }) => ({
-					name,
-					officialSite,
-					src : img,
-				})
-			)
-			.filter(({ src }) => typeof src === "string");
+	const filteredSearchResults = [];
 
-	return createSizedImages(images, 1, 4, 2);
+	for (const { src, name, officialSite } of searchResults) {
+		if (src) {
+			filteredSearchResults.push({
+				name,
+				officialSite,
+				src
+			});
+		}
+	}
+
+	return createSizedImages(filteredSearchResults, 1, 4, 2);
 };
 
 const goToImgSite = ({ target }) => {

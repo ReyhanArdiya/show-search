@@ -3,14 +3,9 @@ import React from "react";
 const SearchContext = React.createContext({
 	searchResults : [
 		{
-			img          : "",
 			name         : "",
 			officialSite : "",
-		},
-		{
-			img          : "",
-			name         : "",
-			officialSite : "",
+			src          : "",
 		}
 	]
 });
