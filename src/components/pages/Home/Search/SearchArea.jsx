@@ -82,7 +82,7 @@ const createSizedImages = (srcArr, spanSize, stepOne, stepTwo) => {
 	let makeBig = 0;
 	let step = 0;
 
-	return srcArr.map(({ src }, i) => {
+	return srcArr.map(({ src, name, officialSite }, i) => {
 		let gridArea;
 
 		if (i === makeBig) {
@@ -94,10 +94,12 @@ const createSizedImages = (srcArr, spanSize, stepOne, stepTwo) => {
 		return (
 			<ShowImage
 				src={src}
-				alt=""
+				alt={name}
+				title={name}
 				key={uuidv4()}
 				style={{ gridArea }}
 				loading="lazy"
+				data-site={officialSite}
 			/>
 		);
 	});
@@ -105,10 +107,24 @@ const createSizedImages = (srcArr, spanSize, stepOne, stepTwo) => {
 
 // TODO add clickable link and alt/title here and in the func above
 const buildImages = searchResults => {
-	const images = searchResults.map(({ img }) => ({ src : img }))
-		                        .filter(({ src }) => typeof src === "string");
+	const images =
+		searchResults
+			.map(
+				({ img, name, officialSite }) => ({
+					name,
+					officialSite,
+					src : img,
+				})
+			)
+			.filter(({ src }) => typeof src === "string");
 
 	return createSizedImages(images, 1, 4, 2);
+};
+
+const goToImgSite = ({ target }) => {
+	if (target.id !== "search-results") {
+		window.open(target.dataset.site);
+	}
 };
 
 const SearchArea = ({ background, SearchAreaRef }) => {
@@ -120,7 +136,10 @@ const SearchArea = ({ background, SearchAreaRef }) => {
 			background={background}
 			ref={SearchAreaRef}
 		>
-			<SearchResults id="search-results">
+			<SearchResults
+				onClick={goToImgSite}
+				id="search-results"
+			>
 				{buildImages(searchResults)}
 			</SearchResults>
 		</Container>
