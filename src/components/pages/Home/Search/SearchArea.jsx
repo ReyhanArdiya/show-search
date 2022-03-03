@@ -56,7 +56,13 @@ const ShowImage = styled.img`
 	}
 
 	transform-origin: center;
-	animation: scaleImage 0.3s 1 ease-out forwards;
+	animation: scaleImage 0.3s 1 ease-out;
+	transition: transform 0.3s ease-out;
+
+	:hover {
+		cursor: pointer;
+		transform: scale(1.1);
+	}
 `;
 
 /**
