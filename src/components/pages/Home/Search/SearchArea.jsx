@@ -10,6 +10,7 @@ const Container = styled.section`
 	overflow-y: auto;
 	position: relative;
 	z-index: 2;
+	padding: 1em 0;
 
 	::-webkit-scrollbar {
 		display: none;
@@ -127,9 +128,9 @@ const buildImages = searchResults => {
 	return createSizedImages(filteredSearchResults, 1, 4, 2);
 };
 
-const goToImgSite = ({ target }) => {
-	if (target.id !== "search-results") {
-		window.open(target.dataset.site);
+const goToImgSite = ({ target : { id, dataset : { site } } }) => {
+	if (id !== "search-results" && site) {
+		window.open(site);
 	}
 };
 
