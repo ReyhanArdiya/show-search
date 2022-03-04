@@ -115,6 +115,9 @@
 			"warn",
 			{ "beforeLineComment": false, "allowBlockStart": true }
 		],
+		"react/jsx-max-props-per-line": "warn",
+		"react/jsx-first-prop-new-line": "warn",
+		"react/jsx-closing-bracket-location": "warn",
 		"max-len": [
 			"warn",
 			{
