@@ -1,0 +1,36 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Deploy to App Engine
+
+on:
+    push:
+        branches: ["dockerize"]
+    workflow_dispatch:
+
+jobs:
+    deploy-app-engine:
+        name: Deploy to App Engine
+        runs-on: ubuntu-latest
+
+        permissions:
+            contents: "read"
+            id-token: "write"
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Authenticate with Google Cloud
+              uses: "google-github-actions/auth@v2"
+              with:
+                  project_id: "positive-harbor-411415"
+                  workload_identity_provider: "projects/780572399149/locations/global/workloadIdentityPools/pool-github-actions/providers/github"
+                  service_account: "github-actions-deploy-cloud-ru@positive-harbor-411415.iam.gserviceaccount.com"
+
+            - id: "deploy"
+              uses: "google-github-actions/deploy-appengine@v2"
+              with:
+                  project_id: "positive-harbor-411415"
+
+            - id: "test"
+              run: 'curl "${{ steps.deploy.outputs.version_url }}"'
